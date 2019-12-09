@@ -3,7 +3,7 @@ package appservice
 import (
 	"context"
 
-	appv1alpha1 "github.com/example-inc/app-operator/pkg/apis/app/v1alpha1"
+	appv1beta1 "github.com/example-inc/app-operator/pkg/apis/app/v1beta1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -46,7 +46,7 @@ func add(mgr manager.Manager, r reconcile.Reconciler) error {
 	}
 
 	// Watch for changes to primary resource AppService
-	err = c.Watch(&source.Kind{Type: &appv1alpha1.AppService{}}, &handler.EnqueueRequestForObject{})
+	err = c.Watch(&source.Kind{Type: &appv1beta1.AppService{}}, &handler.EnqueueRequestForObject{})
 	if err != nil {
 		return err
 	}
@@ -55,7 +55,7 @@ func add(mgr manager.Manager, r reconcile.Reconciler) error {
 	// Watch for changes to secondary resource Pods and requeue the owner AppService
 	err = c.Watch(&source.Kind{Type: &corev1.Pod{}}, &handler.EnqueueRequestForOwner{
 		IsController: true,
-		OwnerType:    &appv1alpha1.AppService{},
+		OwnerType:    &appv1beta1.AppService{},
 	})
 	if err != nil {
 		return err
@@ -87,7 +87,7 @@ func (r *ReconcileAppService) Reconcile(request reconcile.Request) (reconcile.Re
 	reqLogger.Info("Reconciling AppService")
 
 	// Fetch the AppService instance
-	instance := &appv1alpha1.AppService{}
+	instance := &appv1beta1.AppService{}
 	err := r.client.Get(context.TODO(), request.NamespacedName, instance)
 	if err != nil {
 		if errors.IsNotFound(err) {
@@ -130,7 +130,7 @@ func (r *ReconcileAppService) Reconcile(request reconcile.Request) (reconcile.Re
 }
 
 // newPodForCR returns a busybox pod with the same name/namespace as the cr
-func newPodForCR(cr *appv1alpha1.AppService) *corev1.Pod {
+func newPodForCR(cr *appv1beta1.AppService) *corev1.Pod {
 	labels := map[string]string{
 		"app": cr.Name,
 	}
