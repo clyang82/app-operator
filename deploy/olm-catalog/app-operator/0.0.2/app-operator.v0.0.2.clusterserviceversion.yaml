@@ -56,9 +56,9 @@ spec:
                   valueFrom:
                     fieldRef:
                       fieldPath: metadata.name
-                - name: clyang/app-operator:v0.0.1
+                - name: OPERATOR_NAME
                   value: app-operator
-                image: REPLACE_IMAGE
+                image: clyang/app-operator:v0.0.1
                 imagePullPolicy: Always
                 name: app-operator
                 resources: {}
