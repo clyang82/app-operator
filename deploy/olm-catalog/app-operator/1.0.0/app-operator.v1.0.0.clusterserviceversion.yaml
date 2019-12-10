@@ -132,7 +132,7 @@ spec:
     type: MultiNamespace
   - supported: true
     type: AllNamespaces
-  maturity: alpha
+  maturity: beta
   provider: {}
   replaces: app-operator.v0.0.2
   version: 1.0.0
