@@ -5,7 +5,7 @@ metadata:
     alm-examples: |-
       [
         {
-          "apiVersion": "app.example.com/v1alpha1",
+          "apiVersion": "app.example.com/v1beta1",
           "kind": "AppService",
           "metadata": {
             "name": "example-appservice"
@@ -24,7 +24,7 @@ spec:
     owned:
     - kind: AppService
       name: appservices.app.example.com
-      version: v1alpha1
+      version: v1beta1
       description: Placeholder description
       displayName: App Operator    
   description: Placeholder description
@@ -58,7 +58,7 @@ spec:
                       fieldPath: metadata.name
                 - name: OPERATOR_NAME
                   value: app-operator
-                image: clyang/app-operator:v0.0.1
+                image: clyang/app-operator:v1.0.0
                 imagePullPolicy: Always
                 name: app-operator
                 resources: {}
