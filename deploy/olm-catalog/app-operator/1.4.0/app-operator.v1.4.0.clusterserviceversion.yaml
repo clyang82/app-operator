@@ -16,7 +16,7 @@ metadata:
         }
       ]
     capabilities: Basic Install
-  name: app-operator.v1.0.0
+  name: app-operator.v1.4.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -63,7 +63,7 @@ spec:
                 name: app-operator
                 resources: {}
               serviceAccountName: app-operator
-      permissions:
+      clusterPermissions:
       - rules:
         - apiGroups:
           - ""
@@ -119,6 +119,7 @@ spec:
           - app.example.com
           resources:
           - '*'
+          - appservices
           verbs:
           - '*'
         serviceAccountName: app-operator
@@ -134,6 +135,5 @@ spec:
     type: AllNamespaces
   maturity: beta
   provider: {}
-  replaces: app-operator.v0.0.2
-  version: 1.0.0
+  version: 1.4.0
   minKubeVersion: 1.11.3
