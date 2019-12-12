@@ -1,7 +1,7 @@
 channels:
 - currentCSV: app-operator.v0.0.2
   name: alpha
-- currentCSV: app-operator.v1.4.0
+- currentCSV: app-operator.v1.5.0
   name: beta
 defaultChannel: beta
 packageName: app-operator
